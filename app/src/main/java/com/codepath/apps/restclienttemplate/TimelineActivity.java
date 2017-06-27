@@ -52,6 +52,7 @@ public class TimelineActivity extends AppCompatActivity {
         // set the adapter
         rvTweets.setAdapter(tweetAdapter);
 
+
         populateTimeline();
     }
 
