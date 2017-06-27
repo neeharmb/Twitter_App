@@ -4,6 +4,8 @@ import android.text.format.DateUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
+
 import java.text.*;
 
 import java.util.Locale;
@@ -12,6 +14,7 @@ import java.util.Locale;
  * Created by neeharmb on 6/26/17.
  */
 
+@Parcel
 public class Tweet {
 
     // list out the attributes
