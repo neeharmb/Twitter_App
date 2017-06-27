@@ -1,10 +1,12 @@
 package com.codepath.apps.restclienttemplate;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -22,6 +24,15 @@ public class TimelineActivity extends AppCompatActivity {
     TweetAdapter tweetAdapter;
     ArrayList<Tweet> tweets;
     RecyclerView rvTweets;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // inflate the menu; this adds items to the action bar if it is present
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        Intent i = new Intent(TimelineActivity.this, ComposeActivity.class);
+        startActivityForResult(i, 20);
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +54,6 @@ public class TimelineActivity extends AppCompatActivity {
 
         populateTimeline();
     }
-
-
-
 
 
     private void populateTimeline() {
