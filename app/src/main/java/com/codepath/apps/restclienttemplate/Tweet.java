@@ -35,9 +35,11 @@ public class Tweet {
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJSON(jsonObject.getJSONObject("user"));
         tweet.name = "@" + tweet.user.screenName;
-        tweet.timeStamp = getRelativeTimeAgo(tweet.createdAt);
+      //  tweet.timeStamp = getRelativeTimeAgo(tweet.createdAt);
+        tweet.timeStamp = " · " + TimeFormatter.getTimeDifference(tweet.createdAt);
         return tweet;
     }
+
 
     // getRelativeTimeAgo("Mon Apr 01 21:16:23 +0000 2014");
     public static String getRelativeTimeAgo(String rawJsonDate) {
