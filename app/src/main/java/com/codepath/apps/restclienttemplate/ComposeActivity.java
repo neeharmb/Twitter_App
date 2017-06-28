@@ -37,12 +37,11 @@ public class ComposeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 client.sendTweet(etTweetBody.getText().toString(), new JsonHttpResponseHandler() {
-                    Tweet tweet = null;
 
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                         try {
-                            tweet = Tweet.fromJSON(response);
+                            Tweet tweet = Tweet.fromJSON(response);
                             Intent data = new Intent();
                             data.putExtra("tweet", Parcels.wrap(tweet));
                             setResult(RESULT_OK, data);

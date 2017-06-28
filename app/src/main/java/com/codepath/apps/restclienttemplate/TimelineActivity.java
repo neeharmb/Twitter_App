@@ -2,6 +2,7 @@ package com.codepath.apps.restclienttemplate;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,6 +24,7 @@ import cz.msebera.android.httpclient.Header;
 public class TimelineActivity extends AppCompatActivity {
 
     private TwitterClient client;
+    private SwipeRefreshLayout swipeContainer;
     TweetAdapter tweetAdapter;
     ArrayList<Tweet> tweets;
     RecyclerView rvTweets;
@@ -45,8 +47,29 @@ public class TimelineActivity extends AppCompatActivity {
         // set the adapter
         rvTweets.setAdapter(tweetAdapter);
 
-
         populateTimeline();
+
+        // Lookup the swipe container view
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code to refresh the list here.
+                // Make sure you call swipeContainer.setRefreshing(false)
+                // once the network request has completed successfully.
+                tweets.clear();
+                tweetAdapter.notifyDataSetChanged();
+                populateTimeline();
+                swipeContainer.setRefreshing(false);
+            }
+        });
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
     }
 
     @Override
@@ -115,7 +138,6 @@ public class TimelineActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK && requestCode == 20) {
             // Use data parameter
             Tweet tweet = (Tweet) Parcels.unwrap(data.getParcelableExtra("tweet"));
-            Log.i("tweet error", tweet.body);
             tweets.add(0, tweet);
             tweetAdapter.notifyItemInserted(0);
             rvTweets.getLayoutManager().scrollToPosition(0);
