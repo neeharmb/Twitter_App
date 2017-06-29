@@ -143,4 +143,5 @@ public class TimelineActivity extends AppCompatActivity {
             rvTweets.getLayoutManager().scrollToPosition(0);
         }
     }
+
 }
