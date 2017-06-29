@@ -39,8 +39,7 @@ public class ReplyActivity extends AppCompatActivity {
         etTweetBody = (EditText) findViewById(R.id.etTweetBody);
 
         String username = getIntent().getStringExtra("username");
-        etTweetBody.setText(username);
-        etTweetBody.setSelection(username.length());
+        etTweetBody.append(username);
 
         btTweet.setOnClickListener(new View.OnClickListener() {
             @Override
