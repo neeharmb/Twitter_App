@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +22,8 @@ public class TweetDetailActivity extends AppCompatActivity {
     TextView tvTweetBody;
     TextView tvTimeStamp;
     TextView tvDateCreated;
+    TextView tvFavoritesDetails;
+    ImageView ivReplyDetails;
     Context context = getContext();
 
     @Override
@@ -35,10 +38,11 @@ public class TweetDetailActivity extends AppCompatActivity {
         tvTweetBody = (TextView) findViewById(R.id.tvTweetBody);
         tvTimeStamp = (TextView) findViewById(R.id.tvTimeStamp);
         tvDateCreated = (TextView) findViewById(R.id.tvDateCreated);
-
+        tvFavoritesDetails = (TextView) findViewById(R.id.tvFavoritesDetails);
+        ivReplyDetails = (ImageView) findViewById(R.id.ivReplyDetails);
 
         Intent i = getIntent();
-        Tweet tweet = (Tweet) Parcels.unwrap(i.getParcelableExtra("tweet"));
+        final Tweet tweet = (Tweet) Parcels.unwrap(i.getParcelableExtra("tweet"));
 
         tvName.setText(tweet.user.name);
         tvUsername.setText(tweet.name);
@@ -49,5 +53,21 @@ public class TweetDetailActivity extends AppCompatActivity {
         tvDateCreated.setText(truncatedDate);
 
         Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfilePicture);
+
+        if (tweet.favCount == 1) {
+            tvFavoritesDetails.setText(tweet.favCount + " like");
+        }
+        else {
+            tvFavoritesDetails.setText(tweet.favCount + " likes");
+        }
+
+        ivReplyDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ReplyActivity.class);
+                intent.putExtra("username", tweet.name); // or tweet.user.name?
+                context.startActivity(intent);
+            }
+        });
     }
 }

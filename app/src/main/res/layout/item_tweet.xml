@@ -71,6 +71,7 @@
         android:layout_height="20dp"
         android:adjustViewBounds="true"
         android:clickable="true"
+        android:layout_marginLeft="25dp"
         android:scaleType="centerInside"
         app:srcCompat="@drawable/ic_retweet"
         android:layout_alignParentBottom="true"
@@ -89,7 +90,7 @@
         android:layout_toEndOf="@+id/tvFavCount" />
 
     <ImageView
-        android:id="@+id/ivFavorite"
+        android:id="@+id/ivFavoriteDetails"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:adjustViewBounds="true"
@@ -113,13 +114,16 @@
         android:layout_width="35dp"
         android:layout_height="20dp"
         android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/ivFavorite"
-        android:text="TextView" />
+        android:layout_toEndOf="@+id/ivFavoriteDetails"
+        android:text="TextView"
+        android:layout_marginLeft="5dp"
+        android:textAlignment="textEnd" />
 
     <TextView
         android:id="@+id/tvRtCount"
         android:layout_width="35dp"
         android:layout_height="20dp"
+        android:layout_marginLeft="5dp"
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/ivRetweet"
         android:text="TextView" />

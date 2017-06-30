@@ -70,4 +70,50 @@
         android:layout_alignBaseline="@+id/tvTimeStamp"
         android:layout_alignBottom="@+id/tvTimeStamp"
         android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:id="@+id/ivReplyDetails"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:clickable="true"
+        app:srcCompat="@drawable/reply_icon"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="14dp"
+        android:layout_below="@+id/tvFavoritesDetails"
+        android:layout_alignEnd="@+id/ivProfilePicture" />
+
+    <TextView
+        android:id="@+id/tvFavoritesDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tvDateCreated"
+        android:layout_below="@+id/tvTimeStamp"
+        android:text="TextView"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/ivRetweetDetails"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:srcCompat="@drawable/ic_retweet"
+        android:layout_marginStart="11dp"
+        android:layout_alignTop="@+id/ivReplyDetails"
+        android:layout_toEndOf="@+id/tvTimeStamp" />
+
+    <ImageView
+        android:id="@+id/ivFavoriteDetails"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:srcCompat="@drawable/ic_vector_heart_stroke"
+        android:layout_marginEnd="75dp"
+        android:layout_alignTop="@+id/ivRetweetDetails"
+        android:layout_toStartOf="@+id/ivDirectMessage" />
+
+    <ImageView
+        android:id="@+id/ivDirectMessage"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:srcCompat="@drawable/ic_vector_messages_stroke"
+        android:layout_alignTop="@+id/ivFavoriteDetails"
+        android:layout_alignEnd="@+id/tvTweetBody" />
 </RelativeLayout>
