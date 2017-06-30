@@ -36,6 +36,9 @@ public class TimelineActivity extends AppCompatActivity {
 
         client = TwitterApplication.getRestClient();
 
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.twittersmalllogo);
+
         // find the RecyclerView
         rvTweets = (RecyclerView) findViewById(R.id.rvTweet);
         // init the arraylist (data source)
@@ -69,7 +72,6 @@ public class TimelineActivity extends AppCompatActivity {
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
-
     }
 
     @Override
