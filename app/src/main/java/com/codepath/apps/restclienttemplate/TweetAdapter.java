@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import org.parceler.Parcels;
+
 import java.util.List;
 
 /**
@@ -60,10 +62,21 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ReplyActivity.class);
-                intent.putExtra("username", tweet.name);
+                intent.putExtra("username", tweet.name); // or tweet.user.name?
                 context.startActivity(intent);
             }
         });
+
+        holder.tvBody.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, TweetDetailActivity.class);
+                intent.putExtra("tweet", Parcels.wrap(tweet));
+                context.startActivity(intent);
+            }
+        });
+
+
     }
 
     @Override
@@ -73,7 +86,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
 
     // create ViewHolder class
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder { // DELETED STATIC IDK IF THIS BREAKS EVERYTHING
         public ImageView ivProfileImage;
         public TextView tvUsername;
         public TextView tvBody;
@@ -97,6 +110,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
             tvRtCount = (TextView) itemView.findViewById(R.id.tvRtCount);
             tvFavCount = (TextView) itemView.findViewById(R.id.tvFavCount);
         }
+
     }
 
     // Clean all elements of the recycler
