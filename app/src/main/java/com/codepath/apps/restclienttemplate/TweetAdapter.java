@@ -24,9 +24,17 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     private List<Tweet> mTweets;
     private static String username;
     Context context;
+    private TweetAdapterListener mListener;
+
+    // define an interface required by the ViewHolder
+    public interface TweetAdapterListener {
+        public void onItemSelected(View view, int position);
+    }
     // pass in the Tweets array in the constructor
-    public TweetAdapter(List<Tweet> tweets) {
+    public TweetAdapter(List<Tweet> tweets, TweetAdapterListener listener) {
+
         mTweets = tweets;
+        mListener = listener;
     }
 
     // for each row, inflate the layout and cache references into ViewHolder
@@ -86,7 +94,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
 
     // create ViewHolder class
 
-    public static class ViewHolder extends RecyclerView.ViewHolder { // DELETED STATIC IDK IF THIS BREAKS EVERYTHING
+    public class ViewHolder extends RecyclerView.ViewHolder { // DELETED STATIC IDK IF THIS BREAKS EVERYTHING
         public ImageView ivProfileImage;
         public TextView tvUsername;
         public TextView tvBody;
@@ -109,6 +117,21 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
             ivReply = (ImageView) itemView.findViewById(R.id.ivReply);
             tvRtCount = (TextView) itemView.findViewById(R.id.tvRtCount);
             tvFavCount = (TextView) itemView.findViewById(R.id.tvFavCount);
+
+            // handle row click event
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mListener != null) {
+                        // get the position of row element
+                        int position = getAdapterPosition();
+
+                        // fire the listener callback
+                        mListener.onItemSelected(view, position);
+                    }
+                }
+            });
+
         }
 
     }

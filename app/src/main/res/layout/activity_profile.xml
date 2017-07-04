@@ -12,8 +12,8 @@
         android:id="@+id/rlUserHeader"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <ImageView
             android:id="@+id/ivProfilePicture"
@@ -46,6 +46,15 @@
             android:maxLines="1"
             android:maxWidth="120dp"
             android:scrollHorizontally="true"
+            android:text="TextView"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:id="@+id/tvFollowing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/ivProfilePicture"
+            android:layout_alignStart="@+id/tvTagline"
             android:text="TextView" />
 
     </RelativeLayout>
@@ -63,21 +72,11 @@
         android:id="@+id/tvFollowers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="57dp"
-        android:layout_marginTop="48dp"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/tvFollowing"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="TextView"
-        android:layout_alignBaseline="@+id/tvFollowers"
-        android:layout_alignBottom="@+id/tvFollowers"
-        android:layout_toEndOf="@+id/tvFollowers"
-        android:layout_marginStart="75dp" />
+        android:layout_marginBottom="35dp"
+        android:layout_above="@+id/flContainer"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="125dp" />
 
     <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
         <!--android:orientation="horizontal"-->

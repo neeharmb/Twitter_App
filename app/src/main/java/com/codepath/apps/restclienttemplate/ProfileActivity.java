@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.fragments.UserTimelineFragment;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -60,13 +61,13 @@ public class ProfileActivity extends AppCompatActivity {
         TextView tvFollowers = (TextView) findViewById(R.id.tvFollowers);
         TextView tvFollowing = (TextView) findViewById(R.id.tvFollowing);
 
-        ImageView ivProfileImage = (ImageView) findViewById(R.id.ivProfileImage);
+        ImageView ivProfilePicture = (ImageView) findViewById(R.id.ivProfilePicture);
         tvName.setText(user.name);
 
          tvTagline.setText(user.tagLine);
          tvFollowers.setText(user.followersCount + " Followers");
          tvFollowing.setText(user.followingCount + " Following");
          //load profile image with Glide
-//        Glide.with(this).load(user.profileImageUrl).into(ivProfileImage);
+        Glide.with(this).load(user.profileImageUrl).into(ivProfilePicture);
     }
 }
