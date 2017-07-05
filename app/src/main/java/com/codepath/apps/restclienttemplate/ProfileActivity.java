@@ -45,7 +45,7 @@ public class ProfileActivity extends AppCompatActivity {
                 try {
                     user = User.fromJSON(response);
                     getSupportActionBar().setTitle(user.screenName);
-                    populateUserHeadline(user);
+                    populateUserHeadline(user, user.screenName);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -55,11 +55,12 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
-    public void populateUserHeadline(User user) {
+    public void populateUserHeadline(User user, String screenName) {
         TextView tvName = (TextView) findViewById(R.id.tvName);
         TextView tvTagline = (TextView) findViewById(R.id.tvTagline);
         TextView tvFollowers = (TextView) findViewById(R.id.tvFollowers);
         TextView tvFollowing = (TextView) findViewById(R.id.tvFollowing);
+        TextView tvUsername = (TextView) findViewById(R.id.tvUsername);
 
         ImageView ivProfilePicture = (ImageView) findViewById(R.id.ivProfilePicture);
         tvName.setText(user.name);
@@ -67,6 +68,7 @@ public class ProfileActivity extends AppCompatActivity {
          tvTagline.setText(user.tagLine);
          tvFollowers.setText(user.followersCount + " Followers");
          tvFollowing.setText(user.followingCount + " Following");
+         tvUsername.setText("@" + screenName);
          //load profile image with Glide
          Glide.with(this).load(user.profileImageUrl).into(ivProfilePicture);
     }
