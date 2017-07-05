@@ -40,6 +40,7 @@
             android:id="@+id/tvTagline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_alignStart="@+id/tvName"
             android:layout_below="@+id/tvName"
             android:ellipsize="end"
@@ -53,6 +54,7 @@
             android:id="@+id/tvFollowing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_alignBottom="@+id/ivProfilePicture"
             android:layout_alignStart="@+id/tvTagline"
             android:text="TextView" />
@@ -73,10 +75,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="35dp"
+        android:layout_marginEnd="112dp"
         android:layout_above="@+id/flContainer"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="125dp" />
+        android:layout_alignParentEnd="true" />
 
     <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
         <!--android:orientation="horizontal"-->

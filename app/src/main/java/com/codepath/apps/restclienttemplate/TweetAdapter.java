@@ -70,7 +70,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ReplyActivity.class);
-                intent.putExtra("username", tweet.name); // or tweet.user.name?
+                intent.putExtra("username", tweet.name);
                 context.startActivity(intent);
             }
         });
@@ -80,6 +80,15 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
             public void onClick(View v) {
                 Intent intent = new Intent(context, TweetDetailActivity.class);
                 intent.putExtra("tweet", Parcels.wrap(tweet));
+                context.startActivity(intent);
+            }
+        });
+
+        holder.ivProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ProfileActivity.class);
+                intent.putExtra("screen_name", tweet.name);
                 context.startActivity(intent);
             }
         });
@@ -125,7 +134,6 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
                     if (mListener != null) {
                         // get the position of row element
                         int position = getAdapterPosition();
-
                         // fire the listener callback
                         mListener.onItemSelected(view, position);
                     }

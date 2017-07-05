@@ -37,7 +37,7 @@ public class ProfileActivity extends AppCompatActivity {
         ft.commit();
 
         client = TwitterApplication.getRestClient();
-        client.getUserInfo(new JsonHttpResponseHandler() {
+        client.getUserInfo(screenName, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // deserialize the User object
@@ -68,6 +68,6 @@ public class ProfileActivity extends AppCompatActivity {
          tvFollowers.setText(user.followersCount + " Followers");
          tvFollowing.setText(user.followingCount + " Following");
          //load profile image with Glide
-        Glide.with(this).load(user.profileImageUrl).into(ivProfilePicture);
+         Glide.with(this).load(user.profileImageUrl).into(ivProfilePicture);
     }
 }
