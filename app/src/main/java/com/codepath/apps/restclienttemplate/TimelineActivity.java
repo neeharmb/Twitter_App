@@ -3,9 +3,12 @@ package com.codepath.apps.restclienttemplate;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -19,12 +22,12 @@ public class TimelineActivity extends AppCompatActivity implements TweetsListFra
 
 
     HomeTimelineFragment fragmentTweetsList;
+   // SearchTweetsFragment searchFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
-
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.drawable.twittersmalllogo);
@@ -38,13 +41,44 @@ public class TimelineActivity extends AppCompatActivity implements TweetsListFra
         // setup the TabLayout to use the view pager
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(vpPager);
+
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // inflate the menu; this adds items to the action bar if it is present
-        getMenuInflater().inflate(R.menu.menu_timeline, menu); // used to be main menu
-        return true;
+       /* getMenuInflater().inflate(R.menu.menu_timeline, menu); // used to be main menu
+        return true;*/
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_timeline, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+             //   SearchTweetsFragment searchFragment = SearchTweetsFragment.newInstance(query);
+                // perform query here
+              //  searchFragment.search(query);
+                Intent intent = new Intent(TimelineActivity.this, SearchActivity.class);
+                intent.putExtra("query", query);
+                startActivity(intent);
+
+                // workaround to avoid issues with some emulators and keyboard devices firing twice if a keyboard enter is used
+                // see https://code.google.com/p/android/issues/detail?id=24599
+                searchView.clearFocus();
+
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+
     }
 
     public void onComposeAction(MenuItem miCompose) {
@@ -73,6 +107,6 @@ public class TimelineActivity extends AppCompatActivity implements TweetsListFra
     @Override
     public void onTweetSelected(Tweet tweet) {
         Toast.makeText(this, tweet.body, Toast.LENGTH_SHORT).show();
-
     }
+
 }

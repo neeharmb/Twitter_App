@@ -139,9 +139,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
                     }
                 }
             });
-
         }
-
     }
 
     // Clean all elements of the recycler
