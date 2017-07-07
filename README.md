@@ -28,7 +28,7 @@ The following **optional** features are implemented:
 * [x] User can **"reply" to any tweet on their home timeline**
   * [x] The user that wrote the original tweet is automatically "@" replied in compose
 * [x] User can click on a tweet to be **taken to a "detail view"** of that tweet
- * [ ] User can take favorite (and unfavorite) or retweet actions on a tweet
+ * [x] User can take favorite (and unfavorite) or retweet actions on a tweet
 * [x] User can see embedded image media within the tweet item in list or detail view.
 * [ ] Compose activity is replaced with a modal compose overlay.
 * [x] User can **click a link within a tweet body** on tweet details view. The click will launch the web browser with relevant page opened.
