@@ -32,7 +32,6 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     }
     // pass in the Tweets array in the constructor
     public TweetAdapter(List<Tweet> tweets, TweetAdapterListener listener) {
-
         mTweets = tweets;
         mListener = listener;
     }
@@ -43,7 +42,6 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-
         View tweetView = inflater.inflate(R.layout.item_tweet, parent, false);
         ViewHolder viewHolder = new ViewHolder(tweetView);
         return viewHolder;
@@ -52,7 +50,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     // bind the values based on the position of the element
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         // get the data according to position
         final Tweet tweet = mTweets.get(position);
 
@@ -97,7 +95,15 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
             }
         });
 
-
+        holder.ivRetweet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View v) {
+                Intent i = new Intent(context, ComposeActivity.class);
+                i.putExtra("tweet", tweet.uid);
+                i.putExtra("body", tweet.body);
+                context.startActivity(i);
+            }
+        });
     }
 
     @Override
@@ -117,12 +123,12 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         public TextView tvRtCount;
         public TextView tvFavCount;
         public ImageView ivMedia;
+        final public ImageView ivRetweet;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             // perform findViewById lookups
-
             ivProfileImage = (ImageView) itemView.findViewById(R.id.ivProfileImage);
             tvUsername = (TextView) itemView.findViewById(R.id.tvUserName);
             tvBody = (TextView) itemView.findViewById(R.id.tvBody);
@@ -132,6 +138,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
             tvRtCount = (TextView) itemView.findViewById(R.id.tvRtCount);
             tvFavCount = (TextView) itemView.findViewById(R.id.tvFavCount);
             ivMedia = (ImageView) itemView.findViewById(R.id.ivMedia);
+            ivRetweet = (ImageView) itemView.findViewById(R.id.ivRetweet);
 
             // handle row click event
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -143,6 +150,14 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
                         // fire the listener callback
                         mListener.onItemSelected(view, position);
                     }
+                }
+            });
+
+            ivRetweet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick (View v) {
+                    ivRetweet.setImageResource(R.drawable.ic_vector_retweet);
+                    Intent i = new Intent(context, ComposeActivity.class);
                 }
             });
         }

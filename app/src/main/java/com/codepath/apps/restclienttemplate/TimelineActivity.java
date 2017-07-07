@@ -49,7 +49,6 @@ public class TimelineActivity extends AppCompatActivity implements TweetsListFra
     public boolean onCreateOptionsMenu(Menu menu) {
         // inflate the menu; this adds items to the action bar if it is present
        getMenuInflater().inflate(R.menu.menu_timeline, menu); // used to be main menu
-       // return true;*/
 
        // MenuInflater inflater = getMenuInflater();
         //inflater.inflate(menu_timeline, menu);
@@ -70,10 +69,6 @@ public class TimelineActivity extends AppCompatActivity implements TweetsListFra
             }
         });
 
-       // miActionProgressItem = menu.findItem(R.id.miActionProgress);
-        //ProgressBar v = (ProgressBar) MenuItemCompat.getActionView(miActionProgressItem);
-        //v.setIndeterminate(true);
-     //   v.getIndeterminateDrawable().setColorFilter();
         return super.onCreateOptionsMenu(menu);
 
     }
@@ -100,7 +95,6 @@ public class TimelineActivity extends AppCompatActivity implements TweetsListFra
         if (resultCode == RESULT_OK && requestCode == 20) {
             // Use data parameter
             Tweet tweet = (Tweet) Parcels.unwrap(data.getParcelableExtra("tweet"));
-           // onCreatedTweet(tweet);
             fragmentTweetsList.onCreatedTweet(tweet);
         }
     }

@@ -21,12 +21,10 @@ import cz.msebera.android.httpclient.Header;
 public class SearchTweetsFragment extends TweetsListFragment {
 
     private TwitterClient client;
-  //  private String query;
 
 
     public static SearchTweetsFragment newInstance(String curr_query) {
         SearchTweetsFragment searchTweetsFragment = new SearchTweetsFragment();
-        //query = curr_query;
         Bundle args = new Bundle();
         args.putString("query", curr_query);
         searchTweetsFragment.setArguments(args);

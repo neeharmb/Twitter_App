@@ -13,13 +13,8 @@ import cz.msebera.android.httpclient.Header;
 
 public class SearchActivity extends AppCompatActivity {
 
-   // SearchTweetsFragment searchFragment;
-
-//    private TwitterClient client;
     String query;
-
     private TwitterClient client;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

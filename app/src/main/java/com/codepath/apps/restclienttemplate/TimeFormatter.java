@@ -49,8 +49,6 @@ public class TimeFormatter {
         return time;
     }
 
-
-
     /**
      * Given a date String of the format given by the Twitter API, returns a display-formatted
      * String of the absolute date of the form "30 Jun 16".

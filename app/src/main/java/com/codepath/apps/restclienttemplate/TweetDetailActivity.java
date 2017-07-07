@@ -67,7 +67,7 @@ public class TweetDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ReplyActivity.class);
-                intent.putExtra("username", tweet.name); // or tweet.user.name?
+                intent.putExtra("username", tweet.name);
                 context.startActivity(intent);
             }
         });
