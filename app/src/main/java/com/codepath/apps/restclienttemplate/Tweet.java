@@ -25,6 +25,7 @@ public class Tweet {
     public String mediaUrl;
     public boolean hasEntities;
     public boolean hasMedia;
+    public boolean isFavorited;
 
     public Tweet() {}
 
@@ -42,7 +43,7 @@ public class Tweet {
         tweet.rtCount = jsonObject.getInt("retweet_count");
         tweet.favCount = jsonObject.getInt("favorite_count");
         tweet.dateCreated = jsonObject.getString("created_at");
-
+        tweet.isFavorited = false;
         tweet.hasEntities = jsonObject.has("entities");
         tweet.hasMedia = jsonObject.getJSONObject("entities").has("media");
         if (tweet.hasEntities && tweet.hasMedia) {

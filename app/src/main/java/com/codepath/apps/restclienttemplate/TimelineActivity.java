@@ -41,6 +41,8 @@ public class TimelineActivity extends AppCompatActivity implements TweetsListFra
         // setup the TabLayout to use the view pager
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(vpPager);
+
+        HomeTimelineFragment fragmentTweetsList = HomeTimelineFragment.newInstance("name");
     }
 
     @Override
@@ -92,7 +94,12 @@ public class TimelineActivity extends AppCompatActivity implements TweetsListFra
         if (resultCode == RESULT_OK && requestCode == 20) {
             // Use data parameter
             Tweet tweet = (Tweet) Parcels.unwrap(data.getParcelableExtra("tweet"));
-            fragmentTweetsList.onCreatedTweet(tweet);
+           // fragmentTweetsList.onCreatedTweet(tweet);
+            Intent i = new Intent(TimelineActivity.this, ComposeActivity.class);
+            startActivityForResult(i, 20);
+            tweets.add(0, tweet);
+            tweetAdapter.notifyItemInserted(0);
+            rvTweets.getLayoutManager().scrollToPosition(0);
         }
     }
 
@@ -116,4 +123,5 @@ public class TimelineActivity extends AppCompatActivity implements TweetsListFra
         // Hide progress item
         miActionProgressItem.setVisible(false);
     }
+
 }

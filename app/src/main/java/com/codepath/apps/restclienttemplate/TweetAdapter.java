@@ -3,6 +3,7 @@ package com.codepath.apps.restclienttemplate;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +12,16 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.models.RetweetActivity;
+import com.loopj.android.http.JsonHttpResponseHandler;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.parceler.Parcels;
 
 import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by neeharmb on 6/26/17.
@@ -26,6 +33,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     private static String username;
     Context context;
     private TweetAdapterListener mListener;
+    private TwitterClient client;
 
     // define an interface required by the ViewHolder
     public interface TweetAdapterListener {
@@ -105,6 +113,78 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
                 context.startActivity(i);
             }
         });
+
+        holder.ivFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                client = TwitterApplication.getRestClient();
+                if (!tweet.isFavorited) {
+                    client.sendFavorite(String.valueOf(tweet.uid), new JsonHttpResponseHandler() {
+                        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                            try {
+                                holder.ivFavorite.setImageResource(R.drawable.ic_vector_heart);
+                                Tweet tweet = Tweet.fromJSON(response);
+                                holder.tvFavCount.setText(String.valueOf(tweet.favCount));
+                                tweet.isFavorited = true;
+//                                Intent intent = new Intent(context, HomeTimelineFragment.class);
+//                                intent.putExtra("isFavorited", true);
+//                                intent.putExtra("position", tweet.position);
+//                                context.startActivity(intent);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                            super.onFailure(statusCode, headers, throwable, errorResponse);
+                        }
+
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                            super.onFailure(statusCode, headers, throwable, errorResponse);
+                        }
+
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                            Log.d("TwitterClient", responseString);
+                            throwable.printStackTrace();
+                        }
+                    });
+                }
+                else {
+                    client.sendUnFavorite(String.valueOf(tweet.uid), new JsonHttpResponseHandler() {
+                        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                            try {
+                                holder.ivFavorite.setImageResource(R.drawable.ic_vector_heart_stroke);
+                                Tweet tweet = Tweet.fromJSON(response);
+                             //   holder.tvFavCount.setText(String.valueOf(tweet.favCount));
+                                tweet.isFavorited = false;
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                            Log.d("TwitterClient", responseString);
+                            throwable.printStackTrace();
+                        }
+
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                            Log.d("TwitterClient", errorResponse.toString());
+                            throwable.printStackTrace();
+                        }
+
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                            super.onFailure(statusCode, headers, throwable, errorResponse);
+                        }
+                    });
+                }
+            }
+        });
+
     }
 
     @Override
@@ -124,7 +204,8 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         public TextView tvRtCount;
         public TextView tvFavCount;
         public ImageView ivMedia;
-        final public ImageView ivRetweet;
+        public ImageView ivRetweet;
+        public ImageView ivFavorite;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -140,6 +221,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
             tvFavCount = (TextView) itemView.findViewById(R.id.tvFavCount);
             ivMedia = (ImageView) itemView.findViewById(R.id.ivMedia);
             ivRetweet = (ImageView) itemView.findViewById(R.id.ivRetweet);
+            ivFavorite = (ImageView)  itemView.findViewById(R.id.ivFavoriteDetails);
 
             // handle row click event
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -161,6 +243,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
                     Intent i = new Intent(context, ComposeActivity.class);
                 }
             });
+
         }
     }
 

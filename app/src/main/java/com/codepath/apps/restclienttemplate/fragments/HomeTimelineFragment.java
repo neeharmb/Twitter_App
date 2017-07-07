@@ -22,6 +22,14 @@ public class HomeTimelineFragment extends TweetsListFragment {
 
     private TwitterClient client;
 
+    public static HomeTimelineFragment newInstance(String screenName) {
+        HomeTimelineFragment homeTimelineFragment = new HomeTimelineFragment();
+        Bundle args = new Bundle();
+        args.putString("screen_name", screenName);
+        homeTimelineFragment.setArguments(args);
+        return homeTimelineFragment;
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +73,10 @@ public class HomeTimelineFragment extends TweetsListFragment {
         tweets.add(0, tweet);
         tweetAdapter.notifyItemInserted(0);
         rvTweets.getLayoutManager().scrollToPosition(0);
+    }
+
+    public void changeFavoriteStatus(int position, boolean isFavorited) {
+        tweets.get(position).isFavorited = isFavorited;
     }
 
 
