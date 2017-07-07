@@ -51,11 +51,7 @@ Here's a walkthrough of implemented user stories for Week 1:
 
 Here's a walkthrough of implemented user stories for Week 2:
 
-<img src='walkthrough_week2_take2.gif' title='Video Walkthrough 2' width='' alt='Video Walkthrough 2' />
-
-Here's a walkthrough showing the mentions tab because I forgot to in the earlier gifs
-
-<img src='walkthrough_week2_mentions.gif' title='Video Walkthrough 3' width='' alt='Video Walkthrough 3' />
+<img src='walkthrough_week2_final.gif' title='Video Walkthrough 2' width='' alt='Video Walkthrough 2' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
