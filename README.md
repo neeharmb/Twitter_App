@@ -2,7 +2,7 @@
 
 **Simple Tweet** is an android app that allows a user to view his/her Twitter timeline and post a new tweet. The app utilizes [Twitter REST API](https://dev.twitter.com/rest/public).
 
-Time spent: **25** hours spent in total
+Time spent: **50** hours spent in total
 
 ## User Stories
 
@@ -61,7 +61,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+Switching to Fragments was conceptually challenging as well as dealing with XML.
 
 ## Open-source libraries used
 
