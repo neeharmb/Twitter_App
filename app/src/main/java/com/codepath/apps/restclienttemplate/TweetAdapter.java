@@ -65,6 +65,10 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         holder.tvFavCount.setText(tweet.favCount.toString());
 
         Glide.with(context).load(tweet.user.profileImageUrl).into(holder.ivProfileImage);
+        if (tweet.mediaUrl != null) {
+            Glide.with(context).load(tweet.mediaUrl).into(holder.ivMedia);
+        }
+        else holder.ivMedia.setVisibility(View.GONE);
 
         holder.ivReply.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +116,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         public ImageView ivReply;
         public TextView tvRtCount;
         public TextView tvFavCount;
+        public ImageView ivMedia;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -126,6 +131,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
             ivReply = (ImageView) itemView.findViewById(R.id.ivReply);
             tvRtCount = (TextView) itemView.findViewById(R.id.tvRtCount);
             tvFavCount = (TextView) itemView.findViewById(R.id.tvFavCount);
+            ivMedia = (ImageView) itemView.findViewById(R.id.ivMedia);
 
             // handle row click event
             itemView.setOnClickListener(new View.OnClickListener() {

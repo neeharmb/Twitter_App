@@ -13,7 +13,8 @@
         android:layout_height="50dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        app:srcCompat="@android:color/black" />
+        app:srcCompat="@android:color/black"
+        android:layout_marginBottom="10dp"/>
 
     <TextView
         android:id="@+id/tvUserName"
@@ -31,14 +32,14 @@
         android:id="@+id/tvBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:layout_alignStart="@+id/tvUserName"
         android:layout_below="@+id/tvUserName"
         android:layout_marginLeft="1dp"
         android:layout_marginStart="1dp"
         android:layout_toEndOf="@+id/ivProfileImage"
         android:fontFamily="sans-serif"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textColor="@android:color/black" />
 
     <TextView
         android:id="@+id/tvName"
@@ -65,73 +66,93 @@
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/tvName" />
 
-    <ImageView
-        android:id="@+id/ivRetweet"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:adjustViewBounds="true"
-        android:clickable="true"
-        android:layout_marginLeft="25dp"
-        android:scaleType="centerInside"
-        android:tint="@color/medium_gray"
-        app:srcCompat="@drawable/ic_retweet"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/ivReply" />
-
 
     <ImageView
-        android:id="@+id/ivDirectMessage"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:adjustViewBounds="true"
-        android:clickable="true"
-        android:scaleType="centerInside"
-        android:tint="@color/medium_gray"
-        app:srcCompat="@drawable/ic_vector_messages_stroke"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/tvFavCount" />
-
-    <ImageView
-        android:id="@+id/ivFavoriteDetails"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:adjustViewBounds="true"
-        android:tint="@color/medium_gray"
-        android:clickable="true"
-        app:srcCompat="@drawable/ic_favorite"
-        android:scaleType="centerInside"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/tvRtCount" />
-
-    <ImageView
-        android:id="@+id/ivReply"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:clickable="true"
-        android:tint="@color/medium_gray"
-        app:srcCompat="@drawable/reply_icon"
+        android:id="@+id/ivMedia"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_alignStart="@+id/tvBody"
         android:layout_below="@+id/tvBody"
-        android:layout_alignStart="@+id/tvBody" />
+        android:scaleType="centerCrop"
+        app:srcCompat="@color/medium_gray" />
 
-    <TextView
-        android:id="@+id/tvFavCount"
-        android:layout_width="35dp"
-        android:layout_height="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/ivFavoriteDetails"
-        android:text="TextView"
-        android:layout_marginLeft="5dp"
-        android:textAlignment="textEnd" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:layout_below="@+id/ivMedia"
+        android:layout_alignStart="@+id/tvUserName"
+        android:layout_alignEnd="@+id/ivMedia">
 
-    <TextView
-        android:id="@+id/tvRtCount"
-        android:layout_width="35dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="5dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/ivRetweet"
-        android:text="TextView" />
+        <ImageView
+            android:id="@+id/ivReply"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:clickable="true"
+            android:tint="@color/medium_gray"
+            app:srcCompat="@drawable/reply_icon"
+            android:layout_below="@+id/ivMedia"
+            android:layout_alignStart="@+id/ivMedia" />
 
+        <ImageView
+            android:id="@+id/ivRetweet"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:layout_marginLeft="25dp"
+            android:scaleType="centerInside"
+            android:tint="@color/medium_gray"
+            app:srcCompat="@drawable/ic_retweet"
+            android:layout_below="@+id/ivMedia"
+            android:layout_toStartOf="@+id/tvName" />
+
+        <TextView
+            android:id="@+id/tvRtCount"
+            android:layout_width="35dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+            android:text="TextView"
+            android:layout_alignTop="@+id/ivRetweet"
+            android:layout_alignStart="@+id/tvName"
+            android:layout_toEndOf="@+id/ivRetweet"/>
+
+        <ImageView
+            android:id="@+id/ivFavoriteDetails"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:adjustViewBounds="true"
+            android:tint="@color/medium_gray"
+            android:clickable="true"
+            app:srcCompat="@drawable/ic_favorite"
+            android:scaleType="centerInside"
+            android:layout_below="@+id/ivMedia"
+            android:layout_toStartOf="@+id/tvFavCount" />
+
+        <TextView
+            android:id="@+id/tvFavCount"
+            android:layout_width="35dp"
+            android:layout_height="20dp"
+            android:text="TextView"
+            android:layout_marginLeft="5dp"
+            android:textAlignment="textEnd"
+            android:layout_below="@+id/ivMedia"
+            android:layout_toEndOf="@+id/tvTimeCreated"
+            android:layout_marginStart="19dp" />
+
+        <ImageView
+            android:id="@+id/ivDirectMessage"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:scaleType="centerInside"
+            android:tint="@color/medium_gray"
+            app:srcCompat="@drawable/ic_vector_messages_stroke"
+            android:layout_alignParentBottom="true"
+            android:layout_alignEnd="@+id/ivMedia" />
+
+    </LinearLayout>
 
 </RelativeLayout>
 

@@ -24,6 +24,7 @@ public class TweetDetailActivity extends AppCompatActivity {
     TextView tvDateCreated;
     TextView tvFavoritesDetails;
     ImageView ivReplyDetails;
+    ImageView ivMedia;
     Context context = getContext();
 
     @Override
@@ -40,6 +41,7 @@ public class TweetDetailActivity extends AppCompatActivity {
         tvDateCreated = (TextView) findViewById(R.id.tvDateCreated);
         tvFavoritesDetails = (TextView) findViewById(R.id.tvFavoritesDetails);
         ivReplyDetails = (ImageView) findViewById(R.id.ivReplyDetails);
+        ivMedia = (ImageView) findViewById(R.id.ivMedia);
 
         Intent i = getIntent();
         final Tweet tweet = (Tweet) Parcels.unwrap(i.getParcelableExtra("tweet"));
@@ -69,5 +71,14 @@ public class TweetDetailActivity extends AppCompatActivity {
                 context.startActivity(intent);
             }
         });
+
+        if (tweet.mediaUrl != null) {
+            Glide.with(context)
+                    .load(tweet.mediaUrl)
+                    .into(ivMedia);
+        }
+        else {
+            ivMedia.setVisibility(View.GONE);
+        }
     }
 }

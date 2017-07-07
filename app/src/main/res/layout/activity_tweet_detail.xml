@@ -43,12 +43,12 @@
         android:id="@+id/tvTweetBody"
         android:layout_width="344dp"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/ivProfilePicture"
+        android:layout_below="@+id/ivProfilePicture"
         android:text="TextView"
         android:textColor="@android:color/black"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="66dp"
-        android:layout_below="@+id/ivProfilePicture"
-        android:layout_alignStart="@+id/ivProfilePicture" />
+        tools:layout_editor_absoluteY="66dp" />
 
     <TextView
         android:id="@+id/tvTimeStamp"
@@ -77,10 +77,10 @@
         android:layout_height="20dp"
         android:clickable="true"
         app:srcCompat="@drawable/reply_icon"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="14dp"
-        android:layout_below="@+id/tvFavoritesDetails"
-        android:layout_alignEnd="@+id/ivProfilePicture" />
+        android:layout_marginEnd="13dp"
+        android:layout_below="@+id/ivMedia"
+        android:layout_alignEnd="@+id/ivProfilePicture"
+        android:layout_marginTop="24dp" />
 
     <TextView
         android:id="@+id/tvFavoritesDetails"
@@ -116,4 +116,13 @@
         app:srcCompat="@drawable/ic_vector_messages_stroke"
         android:layout_alignTop="@+id/ivFavoriteDetails"
         android:layout_alignEnd="@+id/tvTweetBody" />
+
+    <ImageView
+        android:id="@+id/ivMedia"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/ivDirectMessage"
+        android:layout_alignStart="@+id/tvFavoritesDetails"
+        android:layout_below="@+id/tvFavoritesDetails"
+        app:srcCompat="@color/inline_action" />
 </RelativeLayout>

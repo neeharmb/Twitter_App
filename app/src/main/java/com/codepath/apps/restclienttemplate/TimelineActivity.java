@@ -8,8 +8,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.fragments.HomeTimelineFragment;
@@ -22,7 +22,7 @@ public class TimelineActivity extends AppCompatActivity implements TweetsListFra
 
 
     HomeTimelineFragment fragmentTweetsList;
-   // SearchTweetsFragment searchFragment;
+    MenuItem miActionProgressItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,37 +48,44 @@ public class TimelineActivity extends AppCompatActivity implements TweetsListFra
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // inflate the menu; this adds items to the action bar if it is present
-       /* getMenuInflater().inflate(R.menu.menu_timeline, menu); // used to be main menu
-        return true;*/
+       getMenuInflater().inflate(R.menu.menu_timeline, menu); // used to be main menu
+       // return true;*/
 
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_timeline, menu);
+       // MenuInflater inflater = getMenuInflater();
+        //inflater.inflate(menu_timeline, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-             //   SearchTweetsFragment searchFragment = SearchTweetsFragment.newInstance(query);
-                // perform query here
-              //  searchFragment.search(query);
                 Intent intent = new Intent(TimelineActivity.this, SearchActivity.class);
                 intent.putExtra("query", query);
                 startActivity(intent);
-
-                // workaround to avoid issues with some emulators and keyboard devices firing twice if a keyboard enter is used
-                // see https://code.google.com/p/android/issues/detail?id=24599
                 searchView.clearFocus();
-
                 return true;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
                 return false;
             }
         });
+
+       // miActionProgressItem = menu.findItem(R.id.miActionProgress);
+        //ProgressBar v = (ProgressBar) MenuItemCompat.getActionView(miActionProgressItem);
+        //v.setIndeterminate(true);
+     //   v.getIndeterminateDrawable().setColorFilter();
         return super.onCreateOptionsMenu(menu);
 
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        // Store instance of the menu item containing progress
+        miActionProgressItem = menu.findItem(R.id.miActionProgress);
+        // Extract the action-view from the menu item
+        ProgressBar v =  (ProgressBar) MenuItemCompat.getActionView(miActionProgressItem);
+        // Return to finish
+        return super.onPrepareOptionsMenu(menu);
     }
 
     public void onComposeAction(MenuItem miCompose) {
@@ -109,4 +116,13 @@ public class TimelineActivity extends AppCompatActivity implements TweetsListFra
         Toast.makeText(this, tweet.body, Toast.LENGTH_SHORT).show();
     }
 
+    public void showProgressBar() {
+        // Show progress item
+        miActionProgressItem.setVisible(true);
+    }
+
+    public void hideProgressBar() {
+        // Hide progress item
+        miActionProgressItem.setVisible(false);
+    }
 }

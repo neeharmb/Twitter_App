@@ -22,6 +22,9 @@ public class Tweet {
     public Integer rtCount;
     public String dateCreated;
     public String location;
+    public String mediaUrl;
+    public boolean hasEntities;
+    public boolean hasMedia;
 
     public Tweet() {}
 
@@ -39,6 +42,16 @@ public class Tweet {
         tweet.rtCount = jsonObject.getInt("retweet_count");
         tweet.favCount = jsonObject.getInt("favorite_count");
         tweet.dateCreated = jsonObject.getString("created_at");
+
+        tweet.hasEntities = jsonObject.has("entities");
+        tweet.hasMedia = jsonObject.getJSONObject("entities").has("media");
+        if (tweet.hasEntities && tweet.hasMedia) {
+            String url = jsonObject.getJSONObject("entities").getJSONArray("media").getJSONObject(0).getString("media_url");
+            tweet.mediaUrl = url + ":large";
+        }
+        else tweet.mediaUrl = null;
+
+
         return tweet;
     }
 }
