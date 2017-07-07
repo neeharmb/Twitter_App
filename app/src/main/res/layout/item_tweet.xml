@@ -124,6 +124,7 @@
             android:adjustViewBounds="true"
             android:tint="@color/medium_gray"
             android:clickable="true"
+            android:layout_marginLeft="10dp"
             app:srcCompat="@drawable/ic_favorite"
             android:scaleType="centerInside"
             android:layout_below="@+id/ivMedia"
@@ -143,14 +144,15 @@
         <ImageView
             android:id="@+id/ivDirectMessage"
             android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_height="match_parent"
+            android:layout_alignEnd="@+id/ivMedia"
+            android:layout_alignParentBottom="true"
             android:adjustViewBounds="true"
+            android:layout_marginLeft="1dp"
             android:clickable="true"
             android:scaleType="centerInside"
             android:tint="@color/medium_gray"
-            app:srcCompat="@drawable/ic_vector_messages_stroke"
-            android:layout_alignParentBottom="true"
-            android:layout_alignEnd="@+id/ivMedia" />
+            app:srcCompat="@drawable/ic_vector_messages_stroke" />
 
     </LinearLayout>
 
