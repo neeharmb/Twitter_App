@@ -53,6 +53,10 @@ Here's a walkthrough of implemented user stories for Week 2:
 
 <img src='walkthrough_week2_final.gif' title='Video Walkthrough 2' width='' alt='Video Walkthrough 2' />
 
+Here's a walkthrough of favoriting and showing the mentions timeline:
+
+<img src='walkthrough_week2_final_again.gif' title='Video Walkthrough 3' width='' alt='Video Walkthrough 3' />
+
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
