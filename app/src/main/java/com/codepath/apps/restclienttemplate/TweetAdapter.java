@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.codepath.apps.restclienttemplate.models.RetweetActivity;
 
 import org.parceler.Parcels;
 
@@ -98,7 +99,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         holder.ivRetweet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
-                Intent i = new Intent(context, ComposeActivity.class);
+                Intent i = new Intent(context, RetweetActivity.class);
                 i.putExtra("tweet", tweet.uid);
                 i.putExtra("body", tweet.body);
                 context.startActivity(i);

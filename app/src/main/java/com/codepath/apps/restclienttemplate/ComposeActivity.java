@@ -24,6 +24,8 @@ public class ComposeActivity extends AppCompatActivity {
 
     private TwitterClient client;
 
+//    Tweet tweet = getIntent().getParcelableExtra("tweet");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,39 +38,39 @@ public class ComposeActivity extends AppCompatActivity {
         btTweet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                client.sendTweet(etTweetBody.getText().toString(), new JsonHttpResponseHandler() {
+                    client.sendTweet(etTweetBody.getText().toString(), new JsonHttpResponseHandler() {
 
-                    @Override
-                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                        try {
-                            Tweet tweet = Tweet.fromJSON(response);
-                            Intent data = new Intent();
-                            data.putExtra("tweet", Parcels.wrap(tweet));
-                            setResult(RESULT_OK, data);
-                            finish();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        @Override
+                        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                            try {
+                                Tweet tweet = Tweet.fromJSON(response);
+                                Intent data = new Intent();
+                                data.putExtra("tweet", Parcels.wrap(tweet));
+                                setResult(RESULT_OK, data);
+                                finish();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                        Log.d("TwitterClient", responseString);
-                        throwable.printStackTrace();
-                    }
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                            Log.d("TwitterClient", responseString);
+                            throwable.printStackTrace();
+                        }
 
-                    @Override
-                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                        Log.d("TwitterClient", errorResponse.toString());
-                        throwable.printStackTrace();
-                    }
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                            Log.d("TwitterClient", errorResponse.toString());
+                            throwable.printStackTrace();
+                        }
 
-                    @Override
-                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-                        super.onFailure(statusCode, headers, throwable, errorResponse);
-                    }
-                });
-            }
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+                            super.onFailure(statusCode, headers, throwable, errorResponse);
+                        }
+                    });
+                }
         });
     }
 

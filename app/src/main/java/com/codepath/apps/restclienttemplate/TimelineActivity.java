@@ -41,8 +41,6 @@ public class TimelineActivity extends AppCompatActivity implements TweetsListFra
         // setup the TabLayout to use the view pager
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(vpPager);
-
-
     }
 
     @Override
@@ -90,7 +88,6 @@ public class TimelineActivity extends AppCompatActivity implements TweetsListFra
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         // check request code and result code first
         if (resultCode == RESULT_OK && requestCode == 20) {
             // Use data parameter
