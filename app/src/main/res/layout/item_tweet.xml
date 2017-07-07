@@ -39,6 +39,8 @@
         android:layout_toEndOf="@+id/ivProfileImage"
         android:fontFamily="sans-serif"
         android:text="TextView"
+        android:autoLink="all"
+        android:linksClickable="true"
         android:textColor="@android:color/black" />
 
     <TextView

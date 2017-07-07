@@ -47,6 +47,8 @@
         android:layout_below="@+id/ivProfilePicture"
         android:text="TextView"
         android:textColor="@android:color/black"
+        android:autoLink="all"
+        android:linksClickable="true"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="66dp" />
 
